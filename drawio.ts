@@ -212,7 +212,7 @@ url:${filePath}
 }
 
 async function insertAttachment(from: number, to: number, name: string, filePath: string): Promise<void> {
-  const link = `![${name}](${name})`;
+  const link = `![${name}](${filePath})`;
   await editor.replaceRange(from, to, link);
   await drawIoEdit(filePath);
 }
