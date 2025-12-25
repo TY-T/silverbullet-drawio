@@ -142,7 +142,7 @@ async function createDiagram(diagramType: DiagramType): Promise<void | false> {
   diagramName = ensureExtension(diagramName, diagramType);
 
   const directory = getCurrentDirectory(await editor.getCurrentPage());
-  const filePath = `${directory}/${diagramName}`;
+  const filePath = encodeURI(`${directory}/${diagramName}`);
 
   if (await fileAlreadyExists(filePath)) {
     return false;
