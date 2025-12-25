@@ -142,7 +142,7 @@ async function createDiagram(diagramType: DiagramType): Promise<void | false> {
   diagramName = ensureExtension(diagramName, diagramType);
 
   const directory = getCurrentDirectory(await editor.getCurrentPage());
-  const filePath = ${directory}/${diagramName};
+  const filePath = `${directory}/${diagramName}`;
 
   if (await fileAlreadyExists(filePath)) {
     return false;
@@ -212,7 +212,7 @@ url:${filePath}
 }
 
 async function insertAttachment(from: number, to: number, name: string, filePath: string): Promise<void> {
-  const link = `![${name}](${filePath})`;
+  const link = `![${name}](${encodeURI(filePath)})`;
   await editor.replaceRange(from, to, link);
   await drawIoEdit(filePath);
 }
